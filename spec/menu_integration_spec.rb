@@ -43,5 +43,33 @@ RSpec.describe "menu integration" do
       menu.add_to_basket("Pepperoni")
       expect(menu.basket_total).to eq 19.98
     end
+
+    it "shows the basket" do
+      menu_item_1 = MenuItem.new("Pepperoni", 9.99)
+      menu_item_2 = MenuItem.new("Hawaiian", 11.50)
+      menu = Menu.new([menu_item_1, menu_item_2])
+      menu.add_to_basket("Pepperoni")
+      expect(menu.view_basket).to eq [["Pepperoni - £9.99"], "Total: £9.99"]
+    end
+
+    it "shows the basket with multiple items" do
+      menu_item_1 = MenuItem.new("Pepperoni", 9.99)
+      menu_item_2 = MenuItem.new("Hawaiian", 11.50)
+      menu = Menu.new([menu_item_1, menu_item_2])
+      menu.add_to_basket("Pepperoni")
+      menu.add_to_basket("Hawaiian")
+      expect(menu.view_basket).to eq [["Pepperoni - £9.99", "Hawaiian - £11.50"], "Total: £21.49"]
+    end
+
+    it "shows the basket with multiple of the same item" do
+      menu_item_1 = MenuItem.new("Pepperoni", 9.99)
+      menu_item_2 = MenuItem.new("Hawaiian", 11.50)
+      menu = Menu.new([menu_item_1, menu_item_2])
+      menu.add_to_basket("Pepperoni")
+      menu.add_to_basket("Pepperoni")
+      expect(menu.view_basket).to eq [["2xPepperoni - £19.98"], "Total: £19.98"]
+    end
   end
+
+
 end

@@ -17,6 +17,7 @@ class Menu
 
   def view_basket
     return "Nothing in basket!" if @basket.empty?
+    return [@basket.map {|item| item.format}, "Total: £#{basket_total}"]
   end
 
   def basket_total
