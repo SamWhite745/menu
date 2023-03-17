@@ -69,6 +69,16 @@ RSpec.describe "menu integration" do
       menu.add_to_basket("Pepperoni")
       expect(menu.view_basket).to eq [["2xPepperoni - £19.98"], "Total: £19.98"]
     end
+
+    it "removes an item from the basket" do
+      menu_item_1 = MenuItem.new("Pepperoni", 9.99)
+      menu_item_2 = MenuItem.new("Hawaiian", 11.50)
+      menu = Menu.new([menu_item_1, menu_item_2])
+      menu.add_to_basket("Pepperoni")
+      menu.add_to_basket("Pepperoni")
+      menu.remove_from_basket("Pepperoni")
+      expect(menu.view_basket).to eq [["Pepperoni - £9.99"], "Total: £9.99"]
+    end
   end
 
 

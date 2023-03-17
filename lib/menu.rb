@@ -13,6 +13,7 @@ class Menu
   end
 
   def remove_from_basket(menu_item)
+    @basket.delete_at(@basket.index(text_to_item(menu_item)))
   end
 
   def view_basket
