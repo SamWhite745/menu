@@ -1,0 +1,15 @@
+┌───────────────────────┐
+│Menu                   │    ┌───────────────┐
+│-----------------------│    │MenuItems      │
+│-basket: array of items│    │---------------│
+│-menu_items: array of  ├───►│-name: String  │
+│         menu items    │    │-price: double │
+│-----------------------│    └───────────────┘
+│-see_menu()            │
+│-add_item(item)        │
+│-remove_item(item)     │
+│-receipt()             │
+│-send_text(number)     │
+│-see_basket()          │
+│-basket_total()        │
+└───────────────────────┘
