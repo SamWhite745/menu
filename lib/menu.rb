@@ -16,8 +16,18 @@ class Menu
   end
 
   def view_basket
-    return "Nothing in basket!" if @basket.empty?
-    return [@basket.map {|item| item.format}, "Total: £#{basket_total}"]
+    if @basket.empty?
+      return "Nothing in basket!" 
+    else
+      grouped = @basket.tally { |item| item.item }
+      formatted = []
+      p grouped
+      grouped.each { |item, num|
+         formatted << format(num, item)
+      }
+      return [formatted, "Total: £#{basket_total}"]
+    end
+    
   end
 
   def basket_total
@@ -31,5 +41,9 @@ class Menu
 
   def text_to_item(text)
     return @menu_items.select {|menu_item| menu_item.item == text}.first
+  end
+
+  def format(num, item)
+    num.to_i > 1 ? "#{num}x#{item.item} - £#{sprintf('%.2f', num*item.price)}" : item.format
   end
 end
